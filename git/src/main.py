@@ -29,7 +29,12 @@ def list_books(books):
         return "Библиотека пуста."
     result_lines = []
     for idx, book in enumerate(books, start=1):
-        result_lines.append(f"{idx}. {book['title']} | {book['author']} | {book['year']}")
+        result_lines.append(
+    f"{idx}. {book['title']} | "
+    f"{book['author']} | "
+    f"{book['year']}"
+)
+
     return "\n".join(result_lines)
 
 def add_book(books, title, author, year):
@@ -50,7 +55,8 @@ def remove_book(books, title):
     Принимает текущий список книг и название книги для удаления.
     Возвращает новый список без книги, у которой совпадает название.
     """
-    # Фильтруем список: оставляем только те книги, у которых название не совпадает с переданным
+    # Фильтруем список: оставляем только те книги,
+    # у которых название не совпадает с переданным
     return [book for book in books if book['title'].lower() != title.lower()]
 
 def search_books(books, keyword):
@@ -61,7 +67,8 @@ def search_books(books, keyword):
     keyword_lower = keyword.lower()
     return [
         book for book in books
-        if keyword_lower in book['title'].lower() or keyword_lower in book['author'].lower()
+        if keyword_lower in book['title'].lower() 
+        or keyword_lower in book['author'].lower()
     ]
 
 def main():
@@ -99,7 +106,7 @@ def main():
 
         elif choice == '3':
             print("\nУдаление книги:")
-            title_to_remove = input("Введите название книги, которую хотите удалить: ").strip()
+            title_to_remove = input("Введите книгу, которую хотите удалить: ").strip()
 
             new_books = remove_book(books, title_to_remove)
             if len(new_books) > len(books):
@@ -111,7 +118,7 @@ def main():
 
         elif choice == '4':
             print("\nПоиск книг:")
-            keyword = input("Введите ключевое слово для поиска (в названии или авторе): ").strip()
+            keyword = input("Введите ключевое слово(в названии или авторе): ").strip()
             found_books = search_books(books, keyword)
             if found_books:
                 print("\nНайденные книги:")
@@ -125,11 +132,6 @@ def main():
 
         else:
             print("Некорректный ввод. Попробуйте ещё раз.")
-
-
-
-
-
 
 if __name__ == "__main__":
     main()
